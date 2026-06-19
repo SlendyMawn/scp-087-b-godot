@@ -39,6 +39,9 @@ var using_gamepad: bool = false:
 func _init() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+func _ready() -> void:
+	load_prefs()
+
 func load_scene(scene: String):
 	var loading: Control = preload("res://scn/loading.scn").instantiate()
 	loading.scene = scene
@@ -64,3 +67,28 @@ func _input(event: InputEvent) -> void:
 		using_gamepad = false
 	elif event is InputEventKey:
 		using_gamepad = false
+
+func save_prefs():
+	var config: ConfigFile = ConfigFile.new()
+	config.set_value("video", "window_mode", DisplayServer.window_get_mode())
+	config.set_value("video", "vsync", DisplayServer.window_get_vsync_mode())
+	config.set_value("video", "show_fps", show_fps)
+	config.set_value("video", "brightness", brightness)
+	config.set_value("audio", "volume", AudioServer.get_bus_volume_linear(0))
+	config.set_value("controls", "look_sensitivity_mouse", look_sensitivity_mouse)
+	config.set_value("controls", "look_sensitivity_gamepad", look_sensitivity_gamepad)
+	config.save("user://settings.ini")
+
+func load_prefs():
+	var config: ConfigFile = ConfigFile.new()
+	if config.load("user://settings.ini") != OK:
+		print("Cannot load user prefs, creating defaults..")
+		SCPGame.save_prefs()
+		return
+	DisplayServer.window_set_mode(config.get_value("video", "window_mode", DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN))
+	DisplayServer.window_set_vsync_mode(config.get_value("video", "vsync", DisplayServer.VSyncMode.VSYNC_ENABLED))
+	show_fps = config.get_value("video", "show_fps", false)
+	brightness = config.get_value("video", "brightness", 40)
+	AudioServer.set_bus_volume_linear(0, config.get_value("audio", "volume", 0.5))
+	look_sensitivity_mouse = config.get_value("controls", "look_sensitivity_mouse", 0.3)
+	look_sensitivity_gamepad = config.get_value("controls", "look_sensitivity_gamepad", 2.0)

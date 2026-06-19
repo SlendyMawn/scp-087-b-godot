@@ -13,5 +13,6 @@ This port features:
  - Android version
  - Web version
  - Gamepad support *(Tested with [Steam Controller](https://store.steampowered.com/hardware/steamcontroller))*
+ - Difficulty settings
 
 Feel free to fork this and build off of it as you wish, but *[credit would also be nice!](https://www.youtube.com/@SlendyMawn)*
