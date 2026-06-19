@@ -1,4 +1,6 @@
-﻿# SCP-087-B Godot
+<img width="1180" height="228" alt="banner" src="https://github.com/user-attachments/assets/ab740ef3-9243-401b-bd2e-5506a5fc5c14" />
+
+# SCP-087-B Godot
 This is a port of the original [SCP-087-B](https://www.scpcbgame.com/scp-087-b.html) to [Godot Engine](https://godotengine.org/) (GDScript)
 
 I did this port for fun, it's not very high quality though. *(Pull Requests welcome!)*
