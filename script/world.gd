@@ -358,6 +358,8 @@ func draw_floor_markers(floor_amount: int):
 		print("Added floor marker for floor " + str(i))
 
 func _physics_process(delta: float) -> void:
+	# I didn't realise this at the time, but physics_process is actually capped to 60fps by default, allowing the game to render at a higher framerate while still retaining the behaviour of the original game.
+	#TODO: Implement deltatime to handle this better at lower framerates
 	update_floors(SCPGame.num_floors)
 	# This seems to happen awfully frequently, double check if its like this in the original. (Consider quintupling the higher number and negating it by player floors * 3?)
 	if randi_range(1, 1000) < 2:
