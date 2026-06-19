@@ -1,5 +1,5 @@
 ﻿# SCP-087-B Godot
-This is a port of the original SCP-087-B to [Godot Engine](https://godotengine.org/) (GDScript)
+This is a port of the original [SCP-087-B](https://www.scpcbgame.com/scp-087-b.html) to [Godot Engine](https://godotengine.org/) (GDScript)
 
 I did this port for fun, it's not very high quality though. *(Pull Requests welcome!)*
 
